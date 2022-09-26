@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        overflow: hidden;
+        background-color: teal;
+        color: teal;
+    }
+    .preloader{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+    }
+    .loader{
+        height: 69px;
+        width: 69px;
+        border: 7px solid transparent;
+        border-top: 7px dashed teal;
+        border-left: 7px dashed teal;
+        border-radius: 50%;
+        animation: spin 700ms linear infinite;
+    }
+
+    .palindrome{
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+    }
+
+    input{
+        padding: 10px;
+        border: 3px solid teal;
+        border-radius: 10px;
+        outline: teal;
+        margin: 17px;
+        background-color: black;
+        color: white;
+    }
+
+    @keyframes spin {
+        0%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<body>
+    <div class="preloader"><div class="loader"></div></div>
+    <div class="palindrome">
+        <h1 style="margin: 17px;">Palindrome Checker</h1>
+        <input type="text" onblur="palindrome()" placeholder="Enter Here...">
+        <p></p>
+    </div>
+    <script>
+        setTimeout(() => {
+           document.querySelector(".preloader").style.display = "none"; 
+        }, 2000);
+        function palindrome() {
+            let letter = [];
+            let word = document.querySelector("input").value;
+            let reverse = "";
+            for(let i=0; i<word.length; i++){
+                letter.push(word[i]);
+            }
+            for(let i=0; i<word.length; i++){
+                reverse += letter.pop();
+            }
+
+            if(reverse === word){
+                document.querySelector("p").innerHTML = word + " is a palindrome."
+            } else {
+                document.querySelector("p").innerHTML = word + " is not palindrome."
+            }
+        }
+
+
+    </script>
+</body>
+</html>
